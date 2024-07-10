@@ -1,0 +1,14 @@
+package com.route.routetask.data.repo
+
+import com.route.routetask.data.data_models.ProductsItem
+import com.route.routetask.data.data_models.ProductsResponse
+import com.route.routetask.data.data_sources.remote.ProductsRemoteDataSource
+import com.route.routetask.domain.repo.ProductsRepo
+import javax.inject.Inject
+
+class ProductsRepoImpl @Inject constructor(private val remoteDS: ProductsRemoteDataSource) : ProductsRepo {
+    override suspend fun getProducts(): List<ProductsItem?>? {
+        return remoteDS.getProducts()
+    }
+
+}

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="product"
+            type="com.route.routetask.data.data_models.ProductsItem" />
+
+        <variable
+            name="price"
+            type="Double" />
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginTop="16dp"
+        app:cardBackgroundColor="@color/white"
+        app:strokeColor="#4D004182"
+        app:strokeWidth="2dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/productImg"
+                android:layout_width="181dp"
+                android:layout_height="119dp"
+                android:imageURL="@{product.images.get(0)}"
+                android:scaleType="centerCrop"
+                android:src="@drawable/product_test_img"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="8dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="50dp"
+                app:cardElevation="0dp"
+                app:layout_constraintEnd_toEndOf="@id/productImg"
+                app:layout_constraintTop_toTopOf="@id/productImg"
+                app:strokeWidth="0dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_margin="4dp"
+                    android:src="@drawable/love_icon" />
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/productTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="4dp"
+                android:layout_marginTop="8dp"
+                android:maxLines="1"
+                android:text="@{product.title}"
+                android:textColor="@color/dark_blue"
+                app:layout_constraintStart_toStartOf="@id/productImg"
+                app:layout_constraintTop_toBottomOf="@id/productImg"
+                tools:text="Nike Air Jordon" />
+
+            <TextView
+                android:id="@+id/productDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="8dp"
+                android:maxLines="1"
+                android:text="@{product.description}"
+                android:textColor="@color/dark_blue"
+                app:layout_constraintEnd_toEndOf="@id/productImg"
+                app:layout_constraintStart_toStartOf="@id/productImg"
+                app:layout_constraintTop_toBottomOf="@id/productTitle"
+                tools:text="Nike shoes flexible for wo.." />
+
+            <TextView
+                android:id="@+id/productPriceAfterDiscount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/dark_blue"
+                android:setPrice="@{price}"
+                app:layout_constraintStart_toStartOf="@id/productImg"
+                app:layout_constraintTop_toBottomOf="@id/productDescription"
+                tools:text="EGP 1,200" />
+
+
+            <TextView
+                android:id="@+id/productPriceBeforeDiscount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:setPriceBeforeDiscount="@{product.price}"
+                android:textColor="#CC004182"
+                android:textSize="11sp"
+                app:layout_constraintBottom_toBottomOf="@+id/productPriceAfterDiscount"
+                app:layout_constraintStart_toEndOf="@id/productPriceAfterDiscount"
+                app:layout_constraintTop_toTopOf="@id/productPriceAfterDiscount"
+                tools:text="2000 EGP" />
+
+
+            <TextView
+                android:id="@+id/productReview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="14dp"
+                android:drawablePadding="4dp"
+                android:setRating="@{product.rating}"
+                android:textColor="@color/dark_blue"
+                android:textSize="12sp"
+                app:drawableEndCompat="@drawable/star"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@id/productImg"
+                app:layout_constraintTop_toBottomOf="@id/productPriceAfterDiscount"
+                tools:text="Review (4.6)" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:contentDescription="@string/add_to_cart"
+                android:src="@drawable/add_to_cart_icon"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>
