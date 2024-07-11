@@ -25,7 +25,9 @@ class ProductsViewModel @Inject constructor(private val productsUseCase: Product
             } catch (t: Throwable) {
                 //loading.value = false
                 if (t.localizedMessage == "Unable to resolve host \"dummyjson.com\": No address associated with hostname")
-                    errorMsg.value = "Connect to internet"
+                    errorMsg.value = "No internet connection"
+                else
+                    errorMsg.value = t.localizedMessage
             }
         }
     }

@@ -1,6 +1,7 @@
 package com.route.routetask.ui.activity
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -28,8 +29,11 @@ class ProductsActivity : AppCompatActivity() {
     }
 
     private fun observeToLiveData() {
-        vm.list.observe(this) {
-            productsList = it!!
+        vm.list.observe(this) { list ->
+            productsList = list!!
+            list.forEach {
+                Log.w("discount", it?.discountPercentage.toString())
+            }
             fillPriceList()
             initRecyclerView()
         }
@@ -43,6 +47,14 @@ class ProductsActivity : AppCompatActivity() {
     }
 
     private fun setDiscountToPrices(price: Double, discountPercentage: Double): Double {
+        // Back-End must edit discountPercentage values to decimal numbers
+
+        // Not the perfect solution but it works
+        if (discountPercentage > 1.0) {
+            val newDiscountPercentage = discountPercentage / 100
+            return price * newDiscountPercentage
+        }
+
         return price * discountPercentage
     }
 
@@ -53,7 +65,7 @@ class ProductsActivity : AppCompatActivity() {
         }
     }
 
-    fun fillPriceList() {
+    private fun fillPriceList() {
         productsList.forEach { product ->
             priceList.add(setDiscountToPrices(product?.price!!, product.discountPercentage!!))
         }
