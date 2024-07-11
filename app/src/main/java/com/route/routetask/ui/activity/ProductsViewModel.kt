@@ -1,5 +1,6 @@
 package com.route.routetask.ui.activity
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -13,21 +14,24 @@ import javax.inject.Inject
 class ProductsViewModel @Inject constructor(private val productsUseCase: ProductsUseCase) :
     ViewModel() {
 
-    val list = MutableLiveData<List<ProductsItem?>?>()
-    val loading = MutableLiveData(true)
-    val errorMsg = MutableLiveData<String>()
+    private val _list = MutableLiveData<List<ProductsItem?>?>()
+    val list: LiveData<List<ProductsItem?>?> = _list
+    private val _loading = MutableLiveData(true)
+    val loading: LiveData<Boolean> = _loading
+    private val _errorMsg = MutableLiveData<String>()
+    val errorMsg: LiveData<String> = _errorMsg
 
     fun getProducts() {
         viewModelScope.launch {
             try {
-                list.value = productsUseCase.execute()
-                loading.value = false
+                _list.value = productsUseCase.execute()
+                _loading.value = false
             } catch (t: Throwable) {
                 //loading.value = false
                 if (t.localizedMessage == "Unable to resolve host \"dummyjson.com\": No address associated with hostname")
-                    errorMsg.value = "No internet connection"
+                    _errorMsg.value = "No internet connection"
                 else
-                    errorMsg.value = t.localizedMessage
+                    _errorMsg.value = t.localizedMessage
             }
         }
     }

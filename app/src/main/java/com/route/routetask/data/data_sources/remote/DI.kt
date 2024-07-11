@@ -10,6 +10,6 @@ import dagger.hilt.android.components.ViewModelComponent
 abstract class DI {
     @Binds
     abstract fun provideRemoteDataSource(
-        remoteDataSourceImpl: ProductsRemoteDataSourceImpl
-    ): ProductsRemoteDataSource
+        remoteDataSourceImpl: RemoteDataSourceImpl
+    ): RemoteDataSource
 }

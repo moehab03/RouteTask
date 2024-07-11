@@ -62,6 +62,7 @@ dependencies {
     implementation(libs.logging.interceptor)
     //Hilt
     implementation(libs.hilt.android)
+    testImplementation(libs.junit.jupiter)
     kapt(libs.hilt.android.compiler)
     //Picasso
     implementation(libs.picasso)
