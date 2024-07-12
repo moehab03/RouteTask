@@ -63,13 +63,16 @@ dependencies {
     //Hilt
     implementation(libs.hilt.android)
     testImplementation(libs.junit.jupiter)
+    testImplementation(libs.junit.junit)
     kapt(libs.hilt.android.compiler)
     //Picasso
     implementation(libs.picasso)
 
     testImplementation(libs.junit)
-    //mockk
-    testImplementation("io.mockk:mockk:1.13.11")
+    testImplementation(libs.kotlinx.coroutines.test)
+
+    //MockK
+    testImplementation(libs.mockk.v1120)
 
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
