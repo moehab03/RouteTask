@@ -8,8 +8,7 @@ import com.route.routetask.data.data_models.ProductsItem
 import com.route.routetask.databinding.ProductLayoutBinding
 
 class ProductsAdapter(
-    private val productsList: List<ProductsItem?>,
-    private val priceList: List<Double>
+    private val productsList: List<ProductsItem?>
 ) :
     RecyclerView.Adapter<ProductsAdapter.ProductsViewHolder>() {
 
@@ -22,15 +21,14 @@ class ProductsAdapter(
 
 
     override fun onBindViewHolder(holder: ProductsViewHolder, position: Int) {
-        holder.bind(productsList[position]!!,priceList[position])
+        holder.bind(productsList[position]!!)
     }
 
     override fun getItemCount(): Int = productsList.size
 
     class ProductsViewHolder(private val binding: ProductLayoutBinding) : ViewHolder(binding.root) {
-        fun bind(product: ProductsItem , price : Double) {
+        fun bind(product: ProductsItem) {
             binding.product = product
-            binding.price = price
         }
     }
 }

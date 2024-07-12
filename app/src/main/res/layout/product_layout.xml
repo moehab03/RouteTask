@@ -9,9 +9,6 @@
             name="product"
             type="com.route.routetask.data.data_models.ProductsItem" />
 
-        <variable
-            name="price"
-            type="Double" />
 
     </data>
 
@@ -91,7 +88,7 @@
                 android:layout_marginHorizontal="8dp"
                 android:layout_marginTop="8dp"
                 android:textColor="@color/dark_blue"
-                android:setPrice="@{price}"
+                android:setPriceAfterDiscount="@{product}"
                 app:layout_constraintStart_toStartOf="@id/productImg"
                 app:layout_constraintTop_toBottomOf="@id/productDescription"
                 tools:text="EGP 1,200" />

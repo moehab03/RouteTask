@@ -34,7 +34,6 @@ class ProductsActivity : AppCompatActivity() {
             list.forEach {
                 Log.w("discount", it?.discountPercentage.toString())
             }
-            fillPriceList()
             initRecyclerView()
         }
         vm.loading.observe(this) {
@@ -46,28 +45,10 @@ class ProductsActivity : AppCompatActivity() {
         }
     }
 
-    private fun setDiscountToPrices(price: Double, discountPercentage: Double): Double {
-        // Back-End must edit discountPercentage values to decimal numbers
-
-        // Not the perfect solution but it works
-        if (discountPercentage > 1.0) {
-            val newDiscountPercentage = discountPercentage / 100
-            return price * newDiscountPercentage
-        }
-
-        return price * discountPercentage
-    }
-
     private fun initRecyclerView() {
         binding.apply {
-            productsRV.adapter = ProductsAdapter(productsList, priceList)
+            productsRV.adapter = ProductsAdapter(productsList)
             productsRV.visibility = View.VISIBLE
-        }
-    }
-
-    private fun fillPriceList() {
-        productsList.forEach { product ->
-            priceList.add(setDiscountToPrices(product?.price!!, product.discountPercentage!!))
         }
     }
 

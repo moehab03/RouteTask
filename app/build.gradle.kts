@@ -68,6 +68,9 @@ dependencies {
     implementation(libs.picasso)
 
     testImplementation(libs.junit)
+    //mockk
+    testImplementation("io.mockk:mockk:1.13.11")
+
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }
